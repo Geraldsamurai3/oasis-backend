@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Nuevo Evento Agendado</title>
+  </head>
+  <body>
+    <h1>¡Te invitamos a un nuevo evento!</h1>
+    <p>Hola,</p>
+    <p>Se ha programado el siguiente evento:</p>
+    <ul>
+      <li><strong>Título:</strong> {{title}}</li>
+      <li><strong>Descripción:</strong> {{description}}</li>
+      <li><strong>Ubicación:</strong> {{location}}</li>
+      {{#if date}}
+      <li><strong>Fecha:</strong> {{date}}</li>
+      {{/if}}
+    </ul>
+
+    <p>Nos encantaría que nos acompañaras y compartieras este momento de fe y comunión.</p>
+
+    <blockquote style="font-style: italic; margin: 1em 0; padding-left: 1em; border-left: 3px solid #ccc;">
+      “No dejando de congregarnos, como algunos tienen por costumbre, sino exhortándonos; y tanto más, cuanto veis que aquel día se acerca.”<br/>
+      <small>— Hebreos 10:25 (RVR1960)</small>
+    </blockquote>
+
+    <p>Consulta todos los detalles aquí:</p>
+    <p><a href="{{url}}">{{url}}</a></p>
+    <p>¡Nos vemos pronto!,<br/>El equipo de Oasis de esperanza</p>
+  </body>
+</html>
