@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // src/auth/entities/user.entity.ts
 import {
   Entity,
@@ -29,7 +30,7 @@ export class User {
   @Column({ length: 20, nullable: true })
   phone?: string;
 
-  @Column({ default: 'user' })
+  @Column({ default: 'Admin' })
   role: string;
 
   @Column({ default: false })

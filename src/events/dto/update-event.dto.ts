@@ -1,4 +1,4 @@
-// src/events/dto/create-event.dto.ts
+// src/events/dto/update-event.dto.ts
 import {
   IsString,
   IsOptional,
@@ -6,10 +6,9 @@ import {
   Matches,
   MaxLength,
   IsNotEmpty,
-  isNotEmpty,
 } from 'class-validator';
 
-export class CreateEventDto {
+export class UpdateEventDto {
   @IsNotEmpty({ message: 'El titulo del evento es obligatorio' }) @IsString() @MaxLength(150)
   title: string;
 
@@ -24,20 +23,20 @@ export class CreateEventDto {
 
   @IsOptional()
   @IsDateString()
-  endDate?: string;            // "YYYY-MM-DD" o null
+  endDate?: string;
 
   @IsNotEmpty()
   @Matches(/^\d{2}:\d{2}$/, {
     message: 'Hora inicio debe tener formato HH:MM',
   })
-  startTime: string;          // "HH:MM"
+  startTime: string;
 
   @IsOptional()
   @Matches(/^\d{2}:\d{2}$/, {
     message: 'Hora fin debe tener formato HH:MM',
   })
-  endTime?: string;            // "HH:MM"
-
+  endTime?: string;
+  
   @IsOptional()
   @IsString()
   imageUrl?: string;

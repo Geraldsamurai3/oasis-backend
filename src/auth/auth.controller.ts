@@ -1,9 +1,10 @@
 // src/auth/auth.controller.ts
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Req, Get } from '@nestjs/common';
 import { AuthService }            from './auth.service';
 import { RegisterUserDto }        from './dto/register-user.dto';
 import { LoginDto }               from './dto/login.dto';
 import { Public }                 from './decorators/public.decorator';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -34,4 +35,7 @@ export class AuthController {
   async login(@Body() dto: LoginDto) {
     return this.authSvc.login(dto);
   }
+
+
+
 }

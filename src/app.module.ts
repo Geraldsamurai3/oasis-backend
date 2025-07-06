@@ -1,6 +1,7 @@
 // src/app.module.ts
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { TypeOrmModule }              from '@nestjs/typeorm';
 import { MailerModule }               from '@nestjs-modules/mailer';
 import { EventEmitterModule }         from '@nestjs/event-emitter';
@@ -68,12 +69,12 @@ import { CategoriesModule }  from './categories/categories.module';
     GalleryModule,
     SharedModule,
     CategoriesModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [
     AppService,
     // Aplicar guards globalmente
-    { provide: APP_GUARD, useClass: JwtAuthGuard },
     { provide: APP_GUARD, useClass: BlockedGuard },
   ],
 })

@@ -15,8 +15,24 @@ export class Event {
   @Column({ length: 100 })
   location: string;
 
-  @Column({ type: 'datetime', nullable: true })
-  date: Date;
+  // Fecha de inicio obligatoria (solo fecha)
+  @Column({ type: 'date' })
+  startDate: Date;
+
+  // Fecha de fin opcional
+  @Column({ type: 'date', nullable: true })
+  endDate?: Date;
+
+  // Hora de inicio opcional (HH:MM:SS)
+  @Column({ type: 'time', nullable: true })
+  startTime: string;
+
+  // Hora de fin opcional
+  @Column({ type: 'time', nullable: true })
+  endTime?: string;
+
+  @Column({ length: 255, nullable: true })
+  imageUrl?: string;
 
   @CreateDateColumn()
   createdAt: Date;

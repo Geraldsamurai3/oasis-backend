@@ -1,6 +1,6 @@
 // src/auth/auth.service.ts
 
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository }                 from '@nestjs/typeorm';
 import { Repository }                       from 'typeorm';
 import { JwtService }                       from '@nestjs/jwt';
@@ -43,4 +43,8 @@ export class AuthService {
     const payload = { sub: user.id, role: user.role };
     return { accessToken: this.jwtSvc.sign(payload) };
   }
+  
+
 }
+
+

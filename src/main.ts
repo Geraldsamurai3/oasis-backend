@@ -44,6 +44,14 @@ async function bootstrap() {
     transform: true,            // convierte tipos automáticamente (e.g. strings a números)
   }));
 
+  // 4) Habilitar CORS para tu frontend
+  app.enableCors({
+    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    credentials: true, // si usas cookies httpOnly
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  });
+
   const port = process.env.PORT ? Number(process.env.PORT) : 3000;
   await app.listen(port);
   console.log(`🚀 Servidor corriendo en http://localhost:${port}/`);
