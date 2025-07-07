@@ -1,3 +1,4 @@
+// src/contacts/dto/create-contact.dto.ts
 import {
   IsEmail,
   IsEnum,
@@ -5,25 +6,25 @@ import {
   IsOptional,
   IsString,
   MaxLength,
-} from 'class-validator';
-import { ContactReason } from '../entities/contact.entity';
+} from 'class-validator'
+import { ContactReason } from '../entities/contact.entity'
 
 export class CreateContactDto {
   @IsNotEmpty() @IsString() @MaxLength(100)
-  firstName: string;
+  firstName: string
 
   @IsNotEmpty() @IsString() @MaxLength(100)
-  lastName: string;
+  lastName: string
 
   @IsEmail()
-  email: string;
+  email: string
 
- @IsNotEmpty() @IsString() @MaxLength(20)
-  phone: string;
+  @IsOptional() @IsString() @MaxLength(20)
+  phone?: string
 
   @IsEnum(ContactReason)
-  reason: ContactReason;
+  reason: ContactReason
 
   @IsNotEmpty() @IsString() @MaxLength(2000)
-  message: string;
+  message: string
 }

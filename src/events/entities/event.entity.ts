@@ -25,14 +25,19 @@ export class Event {
 
   // Hora de inicio opcional (HH:MM:SS)
   @Column({ type: 'time', nullable: true })
-  startTime: string;
+  startTime?: string;
 
   // Hora de fin opcional
   @Column({ type: 'time', nullable: true })
   endTime?: string;
 
+  // URL de imagen opcional
   @Column({ length: 255, nullable: true })
   imageUrl?: string;
+
+  // Nuevo campo: enlace de información adicional
+  @Column({ length: 500, nullable: true })
+  additionalLink?: string;
 
   @CreateDateColumn()
   createdAt: Date;

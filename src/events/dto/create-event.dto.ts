@@ -6,7 +6,7 @@ import {
   Matches,
   MaxLength,
   IsNotEmpty,
-  isNotEmpty,
+  IsUrl
 } from 'class-validator';
 
 export class CreateEventDto {
@@ -41,4 +41,9 @@ export class CreateEventDto {
   @IsOptional()
   @IsString()
   imageUrl?: string;
+
+   @IsOptional()
+  @IsUrl({}, { message: 'El enlace adicional debe ser una URL válida' })
+  @MaxLength(500, { message: 'El enlace adicional no puede exceder 500 caracteres' })
+  additionalLink?: string;
 }
