@@ -16,8 +16,6 @@ export class GalleryService {
   async create(dto: CreateGalleryItemDto) {
     const category = await this.catSvc.findOne(dto.categoryId);
     const item = this.repo.create({
-      title: dto.title,
-      description: dto.description,
       mediaUrl: dto.mediaUrl,
       category,
     });

@@ -14,8 +14,6 @@ import {
 import { FileInterceptor }   from '@nestjs/platform-express'
 import { v2 as Cloudinary } from 'cloudinary'
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
-
-import { JwtAuthGuard }      from '../auth/guards/jwt-auth.guard'
 import { EventsService }     from './events.service'
 import { CreateEventDto }    from './dto/create-event.dto'
 import { UpdateEventDto }    from './dto/update-event.dto'

@@ -2,6 +2,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { UsersModule } from './users/users.module';
 import { TypeOrmModule }              from '@nestjs/typeorm';
 import { MailerModule }               from '@nestjs-modules/mailer';
 import { EventEmitterModule }         from '@nestjs/event-emitter';
@@ -10,9 +11,9 @@ import { APP_GUARD }                  from '@nestjs/core';
 import { AppController }    from './app.controller';
 import { AppService }       from './app.service';
 
-import { JwtAuthGuard }     from './auth/guards/jwt-auth.guard';
-import { BlockedGuard }     from './auth/guards/blocked.guard';
-
+import { BlockGuard
+  
+ } from './auth/guards/block.guard';
 import { EventsModule }      from './events/events.module';
 import { MissionsModule }    from './missions/missions.module';
 import { ProjectsModule }    from './projects/projects.module';
@@ -70,12 +71,13 @@ import { CategoriesModule }  from './categories/categories.module';
     SharedModule,
     CategoriesModule,
     CloudinaryModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [
     AppService,
     // Aplicar guards globalmente
-    { provide: APP_GUARD, useClass: BlockedGuard },
+    { provide: APP_GUARD, useClass: BlockGuard },
   ],
 })
 export class AppModule {}

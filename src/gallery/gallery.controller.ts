@@ -1,3 +1,4 @@
+// src/gallery/gallery.controller.ts
 import {
   Controller,
   Post,
@@ -6,17 +7,40 @@ import {
   Body,
   Param,
   ParseIntPipe,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { v2 as Cloudinary } from 'cloudinary';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
+
 import { GalleryService } from './gallery.service';
 import { CreateGalleryItemDto } from './dto/create-gallery-item.dto';
+
+// configuramos el storage para Cloudinary
+const storage = new CloudinaryStorage({
+  cloudinary: Cloudinary,
+  params: {
+    folder: 'galeria',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'gif'],
+  } as any,
+});
 
 @Controller('gallery')
 export class GalleryController {
   constructor(private readonly gallerySvc: GalleryService) {}
 
+  // ahora esperamos un campo 'media' con la imagen
   @Post()
-  create(@Body() dto: CreateGalleryItemDto) {
-    return this.gallerySvc.create(dto);
+  @UseInterceptors(FileInterceptor('media', { storage }))
+  async create(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() dto: CreateGalleryItemDto,
+  ) {
+    // CloudinaryStorage expone la URL en file.path
+    const mediaUrl = file?.path;
+    // delegamos al servicio
+    return this.gallerySvc.create({ ...dto, mediaUrl });
   }
 
   @Get()

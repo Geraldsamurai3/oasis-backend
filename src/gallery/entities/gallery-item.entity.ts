@@ -12,14 +12,8 @@ export class GalleryItem {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 150 })
-  title: string;
-
-  @Column('text')
-  description: string;
-
   @Column()
-  mediaUrl: string;
+  mediaUrl?: string;
 
   @ManyToOne(() => Category, (cat) => cat.items, { eager: true })
   category: Category;
